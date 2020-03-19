@@ -7,25 +7,25 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView from 'react-native-maps'
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <View style = { styles.container } >
                 /**
                  * Region: initial position of the map is on UNCC lat/long
                  *
                 */
+export default class App extends React.Component {
+    render() {
+        return (
+            <View style = { styles.container } >
                 <MapView style={styles.map}
                     region={{
-                    latitude: 35.3061950367024,
-                    longitude: 80.7344913482666,
+                    latitude: 35.303555,
+                    longitude: -80.73238,
                     latitudeDelta: 0.1,
                     longitudeDelta: 0.1
                     }}
                 >
                 </MapView>
             </View>
-        );//end return
+        );
      }
 }
 
