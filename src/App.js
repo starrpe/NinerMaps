@@ -6,11 +6,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
-import UniqueMarker from './jsresources/UniqueMarker'
+import UniqueMarker from './fileresources/UniqueMarker'
 /**
  * Marker point imports
  */
-import { housing } from './jsresources/markers/housing'
+import { housing } from './fileresources/markers/housing'
 
                 /**
                  * Region: initial position of the map is on UNCC lat/long
