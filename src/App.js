@@ -10,6 +10,7 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
  * Marker point imports
  */
 import { housing } from './resources/markers/housing'
+import { academic } from './resources/markers/academic'
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -21,8 +22,10 @@ import { housing } from './resources/markers/housing'
 export default class App extends React.Component {
     render() {
         return (
-            <View style = { styles.container } >
-                <MapView style={styles.map}
+            <View 
+                style = { styles.container }>
+                <MapView 
+                    style={styles.map}
                     region={{
                     latitude: 35.303555,
                     longitude: -80.73238,
@@ -40,6 +43,19 @@ export default class App extends React.Component {
                                 key = {marker.tag}
                                 image = {marker.markerImage}
                                 pinColor = {'gold'}>
+                        </Marker>
+                    ))
+                }
+                {
+                    academic.map(marker =>(
+                        <Marker 
+                            coordinate = {{
+                                latitude: marker.latitude,
+                                longitude: marker.longitude}}
+                                title = {marker.title}
+                                key = {marker.tag}
+                                image = {marker.markerImage}
+                                pinColor = {'red'}>
                         </Marker>
                     ))
                 }
