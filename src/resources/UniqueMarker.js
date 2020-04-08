@@ -1,10 +1,13 @@
 import React from 'react'
-import {View,StyleSheet,Image} from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 
 const UniqueMarker = ({item}) => {
     return (
         <View style={styles.roundMarker}>
-            <Image style={styles.roundImage} source={{uri:item.markerImage}}/>
+            <Image 
+            style={styles.roundImage} 
+            source={{uri:item.markerImage}}
+            />
         </View>
     )
 }

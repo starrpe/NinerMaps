@@ -6,16 +6,18 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
-import UniqueMarker from './fileresources/UniqueMarker'
 /**
  * Marker point imports
  */
-import { housing } from './fileresources/markers/housing'
+import { housing } from './resources/markers/housing'
 
-                /**
-                 * Region: initial position of the map is on UNCC lat/long
-                 *
-                */
+/**
+* Region: initial position of the map is on UNCC lat/long
+* Note on pinColor prop: GoogleMaps API doesn't accept custom
+* hex colors for Android. Colors must be from the following list:
+* red (default), tomato, orange, yellow, gold, what, tan, linen,
+* green, blue/navy, aqua/teal/turquoise, violet/purple/plum, indigo
+*/
 export default class App extends React.Component {
     render() {
         return (
@@ -34,10 +36,10 @@ export default class App extends React.Component {
                             coordinate = {{
                                 latitude: marker.latitude,
                                 longitude: marker.longitude}}
-                                title = {marker.title}>
-
-                                <UniqueMarker item = {marker}/>
-
+                                title = {marker.title}
+                                key = {marker.tag}
+                                image = {marker.markerImage}
+                                pinColor = {'gold'}>
                         </Marker>
                     ))
                 }
