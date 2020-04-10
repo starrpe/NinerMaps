@@ -6,3 +6,7 @@ For Akash:</br>
 </br>
 For everyone else:</br>
 [Setting up with React Native and Visual Studio](https://www.ryadel.com/en/react-native-visual-studio-code-windows-hello-world-sample-app/)
+
+# Commiting
+NM-(SprintNumber)(CommitNumber): Summary of changes
+Example: The 15th commit of Sprint 2 would be NM-215, the 2nd commit of Sprint 3 would be NM-302, etc.
