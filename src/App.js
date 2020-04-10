@@ -43,7 +43,6 @@ export default class App extends React.Component {
                                 longitude: marker.longitude}}
                                 title = {marker.title}
                                 key = {marker.tag}
-                                image = {marker.markerImage}
                                 pinColor = {'gold'}>
                         </Marker>
                     ))
@@ -56,7 +55,6 @@ export default class App extends React.Component {
                                 longitude: marker.longitude}}
                                 title = {marker.title}
                                 key = {marker.tag}
-                                image = {marker.markerImage}
                                 pinColor = {'red'}>
                         </Marker>
                     ))
