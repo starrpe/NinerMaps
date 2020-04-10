@@ -11,7 +11,10 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
  */
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
+import {parking} from './resources/markers/parking'
+import {services} from './resources/markers/services'
 import { mapstyle } from './resources/MapStyle'
+
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -59,7 +62,30 @@ export default class App extends React.Component {
                         </Marker>
                     ))
                 }
-
+                {
+                    parking.map(marker =>(
+                        <Marker 
+                            coordinate = {{
+                                latitude: marker.latitude,
+                                longitude: marker.longitude}}
+                                title = {marker.title}
+                                key = {marker.tag}
+                                pinColor = {'linen'}>
+                        </Marker>
+                    ))
+                }
+                {
+                    services.map(marker =>(
+                        <Marker 
+                            coordinate = {{
+                                latitude: marker.latitude,
+                                longitude: marker.longitude}}
+                                title = {marker.title}
+                                key = {marker.tag}
+                                pinColor = {'green'}>
+                        </Marker>
+                    ))
+                }
                 </MapView>
             </View>
         );
