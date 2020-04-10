@@ -7,10 +7,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
 /**
- * Marker point imports
+ * Local imports
  */
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
+import { mapstyle } from './resources/MapStyle'
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -26,6 +27,7 @@ export default class App extends React.Component {
                 style = { styles.container }>
                 <MapView 
                     style={styles.map}
+                    customMapStyle={mapstyle}
                     region={{
                     latitude: 35.303555,
                     longitude: -80.73238,
