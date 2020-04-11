@@ -6,6 +6,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
+
 /**
  * Local imports
  */
@@ -27,8 +28,9 @@ export default class App extends React.Component {
     render() {
         return (
             <View 
-                style = { styles.container }>
+                style = { styles.container }> 
                 <MapView 
+                    mapType= {"satellite"}
                     style={styles.map}
                     customMapStyle={mapstyle}
                     region={{
