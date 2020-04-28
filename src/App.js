@@ -4,17 +4,16 @@
  */
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'
+import { StyleSheet, Text, View, Image, Alert, Button, TouchableOpacity } from 'react-native';
+import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 
 /**
  * Local imports
  */
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
-import {parking} from './resources/markers/parking'
-import {services} from './resources/markers/services'
 import { mapstyle } from './resources/MapStyle'
+
 
 
 /**
@@ -25,20 +24,80 @@ import { mapstyle } from './resources/MapStyle'
 * green, blue/navy, aqua/teal/turquoise, violet/purple/plum, indigo
 */
 export default class App extends React.Component {
+
+    showMessage = () => {
+
+        Alert.alert (
+
+            'hi chase',
+
+            
+
+        )
+    }
+   
+
+
+
+
     render() {
         return (
             <View 
-                style = { styles.container }> 
+                style = { styles.container }>
                 <MapView 
-                    mapType= {"satellite"}
                     style={styles.map}
                     customMapStyle={mapstyle}
+                    showsUserLocation={true}
                     region={{
                     latitude: 35.303555,
                     longitude: -80.73238,
                     latitudeDelta: 0.01,
                     longitudeDelta: 0.01
                     }}>
+                          
+
+                      <Marker 
+                          coordinate={{latitude: 35.308802, longitude:  -80.733709}}
+                          markerImage={'..\\assets\\pins\\dorms.png'}
+                          pinColor={'green'}>
+                              <Callout >
+                                  
+                              <Text style={styles.callOutHeading}>
+                                    Student Union {"\n"}
+                                </Text>
+                                
+                                <TouchableOpacity
+                               
+                                 onPress={this.showMessage}
+                                 >
+                                
+                                <Text  style={styles.buttons}>Dining and Services</Text>
+        
+                                </TouchableOpacity>
+                                   
+
+                                    
+                                    
+                                         
+                                    
+                                         
+                                          <Text style={styles.buttons}>
+                                                          Building Contacts
+                                      
+                                      
+                                      </Text> 
+                              
+
+                              </Callout>
+                      
+                    
+                        
+                                
+                        </Marker>
+
+
+
+
 
                 {
                     housing.map(marker =>(
@@ -49,47 +108,67 @@ export default class App extends React.Component {
                                 title = {marker.title}
                                 key = {marker.tag}
                                 pinColor = {'gold'}>
+                                
+                                <Callout>
+                                <Text style={styles.callOutHeading}>
+                                {marker.title}
+                                </Text>
+
+                                <Text style={styles.buttons}>
+                                                          Building Contacts
+                                      
+                                      
+                                      </Text>
+
+                                </Callout>
+
+
+
                         </Marker>
                     ))
                 }
                 {
                     academic.map(marker =>(
                         <Marker 
+                        
                             coordinate = {{
                                 latitude: marker.latitude,
                                 longitude: marker.longitude}}
                                 title = {marker.title}
                                 key = {marker.tag}
-                                pinColor = {'red'}>
+                                pinColor = {'red'}
+                                calloutImage= {marker.calloutImage}>
+
+<Callout>
+
+<Text style={styles.callOutHeading}>
+                {marker.title}
+                </Text>
+                <Text style={styles.buttons}>
+                          Services
+      
+      
+      </Text>
+
+</Callout>
+
+
+
+
+
+
+                                
                         </Marker>
                     ))
                 }
-                {
-                    parking.map(marker =>(
-                        <Marker 
-                            coordinate = {{
-                                latitude: marker.latitude,
-                                longitude: marker.longitude}}
-                                title = {marker.title}
-                                key = {marker.tag}
-                                pinColor = {'linen'}>
-                        </Marker>
-                    ))
-                }
-                {
-                    services.map(marker =>(
-                        <Marker 
-                            coordinate = {{
-                                latitude: marker.latitude,
-                                longitude: marker.longitude}}
-                                title = {marker.title}
-                                key = {marker.tag}
-                                pinColor = {'green'}>
-                        </Marker>
-                    ))
-                }
+
                 </MapView>
             </View>
+
+
+
+
+                
         );
      }
 }
@@ -111,6 +190,31 @@ const styles = StyleSheet.create({
         left: 0,
         bottom: 0,
         right: 0
+    },
+
+    buttons: {
+
+      color: '#08701C', 
+      textAlign: 'center', 
+      fontSize: 25, 
+      borderStyle: 'solid',
+      borderWidth: 2,
+      paddingRight: 10,
+      paddingLeft: 10,
+      marginBottom: 10,
+      borderRadius: 25,
+      backgroundColor:"#F1F7EC"
+
+    },
+    callOutHeading: {
+
+                fontSize: 30,
+                textAlign: 'center',
+                fontWeight: 'bold', 
+                color:'#08701C'
+
     }
+
+    
 
 });
