@@ -20,6 +20,7 @@ import MapView, {
     Marker,
     Callout
 } from 'react-native-maps';
+import SelectMultiple from 'react-native-select-multiple'
 
 /**
  * Local imports
@@ -27,6 +28,11 @@ import MapView, {
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
 import { mapstyle } from './resources/MapStyle'
+
+/**
+ * const for filters modal
+ */
+const filterCategories = ['Academic Buildings', 'University Services', 'Dining Services', 'Student Housing', 'Recreation Services', 'Transportation Services']
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -43,13 +49,27 @@ export default class App extends React.Component {
         )
     }
 
+/**
+* The following is for showing and hiding the filter options modal and using the SelectMultiple component
+*/    
     state = {
         isVisible: false
       };
-    
-      displayFiltersModal(show){
+
+    displayFiltersModal(show){
         this.setState({isVisible: show})
       }
+
+    filtersState = { selectedFilters: [] }
+
+    onSelectionsChange = (selectedFilters) => {
+        this.setState({ selectedFilters })
+      }
+
+
+/**
+* !! No documentation after this point. Comments in the render function break the application. !!
+*/  
 
     render() {
         return (
@@ -122,13 +142,17 @@ export default class App extends React.Component {
             transparent={false}
             visible={this.state.isVisible}
             >
-              <Text style = { styles.filtersModalText }>
-                  Filters options here</Text>
+                <View style={styles.filtersOptionsContainer}>
+                <SelectMultiple
+                items={filterCategories}
+                selectedItems={this.filtersState.selectedFilters}
+                onSelectionsChange={this.onSelectionsChange} />
+                </View>
               <Text 
                 style={styles.filtersModalCloseText}
                 onPress={() => {
-                  this.displayFiltersModal(!this.state.isVisible);}}>Close</Text>
-          </Modal>
+                this.displayFiltersModal(!this.state.isVisible);}}>Close</Text>
+            </Modal>
 
          <View style = { styles.modalContainer }>
             <TouchableOpacity
@@ -166,7 +190,6 @@ const styles = StyleSheet.create({
     },
 
     buttons: {
-
       color: '#08701C', 
       textAlign: 'center', 
       fontSize: 25, 
@@ -181,10 +204,10 @@ const styles = StyleSheet.create({
     },
     callOutHeading: {
 
-                fontSize: 30,
-                textAlign: 'center',
-                fontWeight: 'bold', 
-                color:'#08701C'
+        fontSize: 30,
+        textAlign: 'center',
+        fontWeight: 'bold', 
+        color:'#08701C'
     },
 
     modalContainer: {
@@ -195,13 +218,13 @@ const styles = StyleSheet.create({
       },
       modalButton: {
         borderColor: 'black',
-        paddingBottom: 10,
+        padding: 10,
         display: 'flex',
         height: 30,
         borderRadius: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: 50,
+        width: 60,
         backgroundColor: '#00703c',
         shadowColor: '#2AC062',
         shadowOpacity: 0.5,
@@ -209,11 +232,23 @@ const styles = StyleSheet.create({
           height: 10, 
           width: 0 
         },
-        shadowRadius: 25,
+        shadowRadius: 20,
       },
       filtersModalCloseText: {
         fontSize: 24,
         color: '#00703c',
-        textAlign: 'center'}
+        textAlign: 'center'
+    },
+    filtersOptionsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+      },
+      filtersOptionsText: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+      }
 
 });
