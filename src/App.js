@@ -20,7 +20,7 @@ import MapView, {
     Marker,
     Callout
 } from 'react-native-maps';
-import SelectMultiple from 'react-native-select-multiple'
+import CheckBox from '@react-native-community/checkbox';
 
 /**
  * Local imports
@@ -28,11 +28,6 @@ import SelectMultiple from 'react-native-select-multiple'
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
 import { mapstyle } from './resources/MapStyle'
-
-/**
- * const for filters modal
- */
-const filterCategories = ['Academic Buildings', 'University Services', 'Dining Services', 'Student Housing', 'Recreation Services', 'Transportation Services']
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -143,11 +138,16 @@ export default class App extends React.Component {
             visible={this.state.isVisible}
             >
                 <View style={styles.filtersOptionsContainer}>
-                <SelectMultiple
-                items={filterCategories}
-                selectedItems={this.filtersState.selectedFilters}
-                onSelectionsChange={this.onSelectionsChange} />
+                    <View style={styles.filtersCheckboxRowContainer}>
+                        <CheckBox/>
+                        <Text style={styles.filtersCheckboxLabel}>Option 1</Text>
+                    </View>
+                    <View style={styles.filtersCheckboxRowContainer}>
+                        <CheckBox/>
+                        <Text style={styles.filtersCheckboxLabel}>Option 2</Text>
+                    </View>
                 </View>
+
               <Text 
                 style={styles.filtersModalCloseText}
                 onPress={() => {
@@ -249,6 +249,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
+      },
+      filtersCheckboxLabel: {
+          margin: 8
+      },
+      filtersCheckboxRowContainer: {
+          flexDirection: "row"
       }
 
 });
