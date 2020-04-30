@@ -20,7 +20,6 @@ import MapView, {
     Marker,
     Callout
 } from 'react-native-maps';
-import CheckBox from '@react-native-community/checkbox';
 
 /**
  * Local imports
@@ -28,6 +27,7 @@ import CheckBox from '@react-native-community/checkbox';
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
 import { mapstyle } from './resources/MapStyle'
+import { ToggleableFilters } from './resources/ToggleableFilters'
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -43,23 +43,6 @@ export default class App extends React.Component {
             'test',
         )
     }
-
-/**
-* The following is for showing and hiding the filter options modal and using the SelectMultiple component
-*/    
-    state = {
-        isVisible: false
-      };
-
-    displayFiltersModal(show){
-        this.setState({isVisible: show})
-      }
-
-    filtersState = { selectedFilters: [] }
-
-    onSelectionsChange = (selectedFilters) => {
-        this.setState({ selectedFilters })
-      }
 
 
 /**
@@ -129,41 +112,7 @@ export default class App extends React.Component {
                 }
                 </MapView>
 
-
-
-
-            <Modal
-            animationType = {"slide"}
-            transparent={false}
-            visible={this.state.isVisible}
-            >
-                <View style={styles.filtersOptionsContainer}>
-                    <View style={styles.filtersCheckboxRowContainer}>
-                        <CheckBox/>
-                        <Text style={styles.filtersCheckboxLabel}>Option 1</Text>
-                    </View>
-                    <View style={styles.filtersCheckboxRowContainer}>
-                        <CheckBox/>
-                        <Text style={styles.filtersCheckboxLabel}>Option 2</Text>
-                    </View>
-                </View>
-
-              <Text 
-                style={styles.filtersModalCloseText}
-                onPress={() => {
-                this.displayFiltersModal(!this.state.isVisible);}}>Close</Text>
-            </Modal>
-
-         <View style = { styles.modalContainer }>
-            <TouchableOpacity
-                style={styles.modalButton}
-                onPress={() => {
-                    this.displayFiltersModal(true);
-                }}>
-                <Text style={{color: 'white'}}>Filters</Text>
-            </TouchableOpacity>               
-        </View>
-
+        <ToggleableFilters></ToggleableFilters>
 
     </View>
 
@@ -209,52 +158,5 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', 
         color:'#08701C'
     },
-
-    modalContainer: {
-        padding: 25,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-      },
-      modalButton: {
-        borderColor: 'black',
-        padding: 10,
-        display: 'flex',
-        height: 30,
-        borderRadius: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: 60,
-        backgroundColor: '#00703c',
-        shadowColor: '#2AC062',
-        shadowOpacity: 0.5,
-        shadowOffset: { 
-          height: 10, 
-          width: 0 
-        },
-        shadowRadius: 20,
-      },
-      filtersModalCloseText: {
-        fontSize: 24,
-        color: '#00703c',
-        textAlign: 'center'
-    },
-    filtersOptionsContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-      },
-      filtersOptionsText: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-      },
-      filtersCheckboxLabel: {
-          margin: 8
-      },
-      filtersCheckboxRowContainer: {
-          flexDirection: "row"
-      }
 
 });
