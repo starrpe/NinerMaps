@@ -26,6 +26,7 @@ import MapView, {
  */
 import { housing } from './resources/markers/housing'
 import { academic } from './resources/markers/academic'
+import { parking } from './resources/markers/parking'
 import { mapstyle } from './resources/MapStyle'
 import { ToggleableFilters } from './resources/ToggleableFilters'
 
@@ -56,6 +57,7 @@ export default class App extends React.Component {
                 <MapView 
                     style={styles.map}
                     customMapStyle={mapstyle}
+                    mapType="satellite"
                     showsUserLocation={true}
                     region={{
                     latitude: 35.303555,
@@ -66,7 +68,6 @@ export default class App extends React.Component {
                           
                       <Marker 
                           coordinate={{latitude: 35.308802, longitude:  -80.733709}}
-                          markerImage={'..\\assets\\pins\\dorms.png'}
                           pinColor={'green'}>
                               <Callout> 
                               <Text style={styles.callOutHeading}> Student Union {"\n"} </Text>
@@ -110,9 +111,23 @@ export default class App extends React.Component {
                         </Marker>
                     ))
                 }
+
+                {
+                    parking.map(marker =>(
+                        <Marker  
+                            coordinate = {{
+                                latitude: marker.latitude,
+                                longitude: marker.longitude}}
+                                title = {marker.title}
+                                key = {marker.tag}
+                                pinColor = {'navy'}>                     
+                        </Marker>
+                    ))
+                }
+
                 </MapView>
 
-        <ToggleableFilters></ToggleableFilters>
+        <ToggleableFilters/>
 
     </View>
 
