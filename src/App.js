@@ -21,6 +21,7 @@ import MapView, {
     Callout
 } from 'react-native-maps';
 
+
 /**
  * Local imports
  */
@@ -29,6 +30,7 @@ import { academic } from './resources/markers/academic'
 import { parking } from './resources/markers/parking'
 import { mapstyle } from './resources/MapStyle'
 import { ToggleableFilters } from './resources/ToggleableFilters'
+import { Search } from './resources/Search';
 
 /**
 * Region: initial position of the map is on UNCC lat/long
@@ -39,11 +41,7 @@ import { ToggleableFilters } from './resources/ToggleableFilters'
 */
 export default class App extends React.Component {
 
-    showMessage = () => {
-        Alert.alert (
-            'test',
-        )
-    }
+ 
 
 
 /**
@@ -52,8 +50,10 @@ export default class App extends React.Component {
 
     render() {
         return (
+            
             <View 
                 style = { styles.container }>
+                 
                 <MapView 
                     style={styles.map}
                     customMapStyle={mapstyle}
@@ -65,7 +65,7 @@ export default class App extends React.Component {
                     latitudeDelta: 0.01,
                     longitudeDelta: 0.01
                     }}>
-                          
+                           
                       <Marker 
                           coordinate={{latitude: 35.308802, longitude:  -80.733709}}
                           pinColor={'green'}>
@@ -124,11 +124,10 @@ export default class App extends React.Component {
                         </Marker>
                     ))
                 }
-
+                
                 </MapView>
-
-        <ToggleableFilters/>
-
+        <ToggleableFilters/>        
+        <Search/>
     </View>
 
         );
