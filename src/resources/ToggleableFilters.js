@@ -1,7 +1,4 @@
 import React from 'react';
-import { db } from '../config';
-
-let itemsRef = db.ref('/Accounting');
 import {
     StyleSheet,
     Text,
